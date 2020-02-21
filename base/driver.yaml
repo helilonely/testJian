@@ -1,9 +1,26 @@
-capabilities:
+chromedriverExecutable: &chromedriver
+  chromedriverExecutable:
+
+capabilities: &default
   platformName: Android
   platformVersion: 6.0.1
-  appPackage: com.android.settings
-  appActivity: .Settings
   noReset: True
   deviceName: 127.0.0.1:7555
+  <<: *chromedriver
+
+settings:
+  appPackage: com.android.settings
+  appActivity: .Settings
+  <<: *default
+
+browser:
+  appPackage: com.android.browser
+  appActivity: .BrowserActivity
+  <<: *default
+
+baidu:
+  appPackage: com.baidu.searchbox
+  appActivity: .MainActivity
+  <<: *default
 
 url: http://127.0.0.1:4723/wd/hub

@@ -1,0 +1,9 @@
+capabilities:
+  platformName: Android
+  platformVersion: 6.0.1
+  appPackage: com.android.settings
+  appActivity: .Settings
+  noReset: True
+  deviceName: 127.0.0.1:7555
+
+url: http://127.0.0.1:4723/wd/hub

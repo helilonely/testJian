@@ -29,6 +29,7 @@ class TestSword:
     @allure.feature("设置首页")
     @allure.story("日期时间页")
     @pytest.mark.settings
+    @pytest.mark.skip(reason="暂时不运行")
     def test_settings(self):
         self.settingsPage = self.page_one.get_settings_page()
         self.dateTimePage = self.page_one.get_dateTime_page()

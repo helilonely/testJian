@@ -4,7 +4,7 @@
 # 文件           :get_driver.py
 # IDE            :PyCharm
 from appium import webdriver
-import yaml
+import yaml, os
 
 
 def get_yaml(file_name):
@@ -20,13 +20,17 @@ def get_yaml(file_name):
 def get_driver():
     """
     获取driver ,默认路径是pytest.ini同级
-    :return: driver
+    :return: browserdriver
     """
-    driver_info = get_yaml("base/driver.yaml")
-    return webdriver.Remote(driver_info.get("url"),
-                            desired_capabilities=driver_info.get("capabilities")
-                            )
+    driver_yaml = get_yaml("base/driver.yaml")
+    desired_capabilities = get_yaml("base/driver.yaml").get("browser")
+
+    desired_capabilities["chromedriverExecutable"] = os.getcwd() + r"\base\browserdriver\chromedriver.exe"
+    return webdriver.Remote(driver_yaml.get("url"), desired_capabilities=desired_capabilities)
+
 
 
 if __name__ == '__main__':
-    print(get_yaml("driver.yaml"))
+    driver_info = get_yaml("driver.yaml").get("browser")
+    driver_info["chromedriverExecutable"] = os.getcwd() + r"\base\browserdriver\chromedriver.exe"
+    print(driver_info)

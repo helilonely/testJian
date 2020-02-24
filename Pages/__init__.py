@@ -20,3 +20,12 @@ class DateTimePageElement:
     时间和日期界面
     """
     sz_24 = (MobileBy.XPATH, "//android.widget.ListView/android.widget.LinearLayout[5]//android.widget.Switch")
+
+
+class BaiduElement:
+    """
+    百度首页手机版元素
+    """
+    search_key_id = (MobileBy.ID,"kw")
+
+    search_btn_id = (MobileBy.ID,"su")

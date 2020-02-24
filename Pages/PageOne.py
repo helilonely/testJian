@@ -6,7 +6,7 @@
 
 import Pages.settings_page
 import Pages.DateTimePage
-
+import Pages.BaiduFirstPage
 
 class PageOne():
 
@@ -20,3 +20,7 @@ class PageOne():
     # 获取设置页中的日期时间页
     def get_dateTime_page(self):
         return Pages.DateTimePage.DateTimePage(self.driver)
+
+    #
+    def get_baidu_page(self):
+        return Pages.BaiduFirstPage.BaiduFirstPage(self.driver)

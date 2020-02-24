@@ -30,7 +30,7 @@ class Base:
         :param frequency: 频率
         :return:
         """
-        self.hl_find_element(self.driver, timeout=timeout, frequency=frequency).send_keys(txt)
+        self.hl_find_element(element_locator, timeout=timeout, frequency=frequency).send_keys(txt)
 
     def hl_allure_png(self, title):
         """
@@ -45,6 +45,10 @@ class Base:
         滑动屏幕，从0.8 到0.2
         :return:
         """
-        win_size = self.driver.get_window_size()
-        self.driver.swipe(win_size.get("width") * 0.5, win_size.get("height") * 0.8, win_size.get("width") * 0.5,
-                          win_size.get("height") * 0.2)
+
+        if "WEBVIEW" in self.driver.current_context:
+            self.driver.execute_script("window.scrollTo(0,1000)")
+        else:
+            win_size = self.driver.get_window_size()
+            self.driver.swipe(win_size.get("width") * 0.5, win_size.get("height") * 0.8, win_size.get("width") * 0.5,
+                              win_size.get("height") * 0.2)

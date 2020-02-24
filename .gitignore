@@ -138,5 +138,9 @@ dmypy.json
 .idea/vcs.xml
 Pages/__pycache__/
 base/__pycache__/
-report/
+report/asserts/
+report/results/
+report/tmp/
+report/report.html
 testcases/__pycache__/
+data/

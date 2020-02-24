@@ -1,12 +1,13 @@
-chromedriverExecutable: &chromedriver
-  chromedriverExecutable:
+chromedriverExecutable: &chrome_driver
+  newCommandTimeout: 300
+  chromedriverExecutable: chromedriver.exe
 
 capabilities: &default
   platformName: Android
   platformVersion: 6.0.1
   noReset: True
   deviceName: 127.0.0.1:7555
-  <<: *chromedriver
+  <<: *chrome_driver
 
 settings:
   appPackage: com.android.settings

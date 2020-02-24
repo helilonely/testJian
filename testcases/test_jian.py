@@ -13,6 +13,7 @@ import base.get_driver
 import pytest
 import Pages.PageOne
 import base.performaceApp
+import time
 
 
 class TestSword:
@@ -22,7 +23,7 @@ class TestSword:
         self.page_one = Pages.PageOne.PageOne(self.driver)
 
     def teardown_class(self):
-        __import__("time").sleep(5)
+        time.sleep(5)
         self.driver.quit()
 
     @allure.feature("设置首页")
@@ -35,9 +36,6 @@ class TestSword:
         self.settingsPage.click_date_time()
         self.dateTimePage.switch_24_time_sys()
 
-    @pytest.mark.sword
-    def test_sword(self):
-        print("ok")
 
     @pytest.mark.browser
     def test_browsers(self):
@@ -53,8 +51,8 @@ class TestSword:
 
         #切换后h5后， 基本按web自动化操作
         self.driver.get("https://www.baidu.com")
-        self.page_one.get_baidu_pae().search_keys("cctv")
-        
+        self.page_one.get_baidu_page().search_keys("cctv")
+
 
 
 if __name__ == '__main__':

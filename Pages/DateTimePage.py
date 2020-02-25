@@ -23,11 +23,7 @@ class DateTimePage(base.base.Base):
         #判断切换前的开关状态
         if "关闭" in self.get_switch_24_time_sys_text():
             self.hl_find_element(Pages.DateTimePageElement.sz_24).click()
-        try:
-            # 断言切换后的状态
-            assert "开启" in self.get_switch_24_time_sys_text()
-        except AssertionError:
-            self.hl_allure_png(title="切换时间制失败")
+        self.hl_allure_png(title="切换时间制")
 
     @allure.step("获取时间制的开关状态")
     def get_switch_24_time_sys_text(self):

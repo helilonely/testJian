@@ -42,7 +42,7 @@ class Base:
 
     def hl_scroll_screen(self):
         """
-        滑动屏幕，从0.8 到0.2
+        适合用于app操作，滑动屏幕，从0.8*height 到0.2*height
         :return:
         """
 

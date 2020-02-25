@@ -24,7 +24,7 @@ def get_driver():
     """
     driver_yaml = get_yaml("base/driver.yaml")
     desired_capabilities = get_yaml("base/driver.yaml").get("browser")
-
+    # 增加一个参数 ，该参数指定h5 浏览器的驱动
     desired_capabilities["chromedriverExecutable"] = os.getcwd() + r"\base\browserdriver\chromedriver.exe"
     return webdriver.Remote(driver_yaml.get("url"), desired_capabilities=desired_capabilities)
 

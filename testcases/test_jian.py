@@ -37,7 +37,6 @@ class TestSword:
         self.settingsPage.click_date_time()
         self.dateTimePage.switch_24_time_sys()
 
-
     @pytest.mark.browser
     def test_browsers(self):
         """
@@ -50,10 +49,9 @@ class TestSword:
                 self.driver.switch_to.context(context)
                 print(self.driver.current_context)
 
-        #切换后h5后， 基本按web自动化操作
+        # 切换后h5后， 基本按web自动化操作
         self.driver.get("https://www.baidu.com")
         self.page_one.get_baidu_page().search_keys("cctv")
-
 
 
 if __name__ == '__main__':

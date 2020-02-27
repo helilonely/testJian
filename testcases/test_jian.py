@@ -6,6 +6,9 @@
 
 
 import os, sys, allure
+import re
+
+import requests
 
 sys.path.append(os.getcwd())
 
@@ -14,8 +17,10 @@ import pytest
 import Pages.PageOne
 import base.performaceApp
 import time
+import urllib.parse
 
 
+@pytest.mark.skip
 class TestSword:
     def setup_class(self):
         self.driver = base.get_driver.get_driver()
@@ -29,7 +34,7 @@ class TestSword:
     @allure.feature("设置首页")
     @allure.story("日期时间页")
     @pytest.mark.settings
-    @pytest.mark.skip(reason="暂时不运行")
+    # @pytest.mark.skip(reason="暂时不运行")
     def test_settings(self):
         self.settingsPage = self.page_one.get_settings_page()
         self.dateTimePage = self.page_one.get_dateTime_page()
@@ -52,6 +57,29 @@ class TestSword:
         # 切换后h5后， 基本按web自动化操作
         self.driver.get("https://www.baidu.com")
         self.page_one.get_baidu_page().search_keys("cctv")
+
+
+class TestInterface():
+    def setup(self):
+        pass
+
+    def teardown(self):
+        pass
+
+    def test_interface(self):
+        """
+        用接口 涉及 search  cookie   reqeusts
+        :return:
+        """
+        sess=requests.session()
+        # sess.cookies["BAIDUID"]="09DA37CA244BB61D5C7DA220A84A7AA6:FG=1"
+        # sess.cookies["BDUSS"]="gwNlZ0Qkt5eVZsVnY4aUI1Y0xPQ29vcGV5ZHUzWWdTSm9OWVpMN3hsV2pRbXhlRVFBQUFBJCQAAAAAAAAAAAEAAAAR2XMous7A7TNnbwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKO1RF6jtURed2"
+
+        header = {"Cookie":"BAIDUID=09DA37CA244BB61D5C7DA220A84A7AA6:FG=1;BDUSS=gwNlZ0Qkt5eVZsVnY4aUI1Y0xPQ29vcGV5ZHUzWWdTSm9OWVpMN3hsV2pRbXhlRVFBQUFBJCQAAAAAAAAAAAEAAAAR2XMous7A7TNnbwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKO1RF6jtURed2; "}
+        response_data = sess.get(url=r"http://www.baidu.com",headers=header)
+        print(re.search("何理3go",urllib.parse.unquote(response_data.text)))
+        print(response_data.cookies)
+        assert r'<a href="http://i.baidu.com" id="user" class="username">何理3go<i class="c-icon"></i></a>' in urllib.parse.unquote(response_data.text)
 
 
 if __name__ == '__main__':

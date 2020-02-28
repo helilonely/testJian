@@ -6,7 +6,7 @@
 import requests
 import re
 import urllib
-
+import pytest
 
 class TestInterface:
     def setup(self):
@@ -15,6 +15,7 @@ class TestInterface:
     def teardown(self):
         pass
 
+    @pytest.mark.interface
     def test_interface(self):
         """
         用接口 涉及 search  cookie   reqeusts
